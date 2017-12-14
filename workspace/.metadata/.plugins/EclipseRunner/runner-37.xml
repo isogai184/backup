@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<runner version="1.0.0">
+<category name="カテゴリーなし">
+<launchConfiguration bookmark="false" name="Book"/>
+<launchConfiguration bookmark="false" name="ChkLoadJdbc"/>
+<launchConfiguration bookmark="false" name="Gui"/>
+<launchConfiguration bookmark="false" name="Hello"/>
+<launchConfiguration bookmark="false" name="HelloWorld"/>
+<launchConfiguration bookmark="false" name="Human"/>
+<launchConfiguration bookmark="false" name="Iphone"/>
+<launchConfiguration bookmark="false" name="Iphone (1)"/>
+<launchConfiguration bookmark="false" name="Main"/>
+<launchConfiguration bookmark="false" name="Myself"/>
+<launchConfiguration bookmark="false" name="Test"/>
+<launchConfiguration bookmark="false" name="Test (1)"/>
+<launchConfiguration bookmark="false" name="Test (2)"/>
+<launchConfiguration bookmark="false" name="Test (3)"/>
+<launchConfiguration bookmark="false" name="Web"/>
+<launchConfiguration bookmark="false" name="capsule"/>
+<launchConfiguration bookmark="false" name="login2"/>
+<launchConfiguration bookmark="false" name="login2 (1)"/>
+<launchConfiguration bookmark="false" name="login2 (2)"/>
+<launchConfiguration bookmark="false" name="object"/>
+<launchConfiguration bookmark="false" name="objective"/>
+<launchConfiguration bookmark="false" name="practice"/>
+<launchConfiguration bookmark="false" name="ローカル・ホスト の Tomcat v8.0 サーバー"/>
+</category>
+</runner>

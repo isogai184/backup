@@ -1,0 +1,61 @@
+/**
+ *
+ */
+package com.internousdev.template2.dto;
+
+/**
+ * @author internousdev
+ *
+ */
+public class BuyItemDTO {
+
+	public int id;
+
+	public String itemName;
+
+	public String itemPrice;
+
+	private String stock;
+
+	private int totalPrice;
+
+	private String payment;
+
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	public String getItemPrice() {
+		return itemPrice;
+	}
+	public void setItemPrice(String itemPrice) {
+		this.itemPrice = itemPrice;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public String getPayment() {
+		return payment;
+	}
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+	public String getStock() {
+		return stock;
+	}
+	public void setStock(String stock) {
+		this.stock = stock;
+	}
+
+}

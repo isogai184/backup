@@ -1,0 +1,44 @@
+/**
+ *
+ */
+package com.internousdev.template2.action;
+
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.internousdev.template2.dao.BuyItemCompleteDAO;
+import com.internousdev.template2.dto.BuyItemDTO;
+import com.opensymphony.xwork2.ActionSupport;
+/**
+ * @author internousdev
+ *
+ */
+public class BuyItemConfirmAction extends ActionSupport implements SessionAware {
+
+	public Map<String, Object> session;
+	private String result;
+
+	private BuyItemCompleteDAO buyItemCompleteDAO = new BuyItemCompleteDAO();
+
+	public String execute() throws SQLException {
+
+		@SuppressWarnings("unchecked")
+		List<BuyItemDTO> buyitemDTOList = (List<BuyItemDTO>) session.get("buyItemDTOList");
+
+		buyItemCompleteDAO.buyItemInfo(session.get("login_user_id").toString(), buyitemDTOList, session.get("payment"));
+
+		result = SUCCESS;
+		return result;
+	}
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+}

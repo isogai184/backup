@@ -1,0 +1,11 @@
+127.0.0.1 - - [28/Nov/2017:10:33:10 +0900] "GET / HTTP/1.1" 404 1019
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:33:13 +0900] "GET /WebProj7/ HTTP/1.1" 200 2315
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:34:21 +0900] "GET /WebProj7/TestAction.action;jsessionid=6EA1B669869EA6E3315E10441650CC68?username=taro&password=234 HTTP/1.1" 200 365
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:34:22 +0900] "GET /WebProj7/css/style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:35:45 +0900] "POST /WebProj7/TestAction.action;jsessionid=6EA1B669869EA6E3315E10441650CC68 HTTP/1.1" 200 365
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:39:23 +0900] "POST /WebProj7/InquiryAction.action;jsessionid=6EA1B669869EA6E3315E10441650CC68 HTTP/1.1" 200 944
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:39:34 +0900] "POST /WebProj7/InquiryCompleteAction.action HTTP/1.1" 200 745
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:41:52 +0900] "POST /WebProj7/TestAction.action;jsessionid=6EA1B669869EA6E3315E10441650CC68 HTTP/1.1" 200 365
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:46:22 +0900] "POST /WebProj7/TestAction.action;jsessionid=6EA1B669869EA6E3315E10441650CC68 HTTP/1.1" 200 489
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:46:35 +0900] "GET /WebProj7/TestAction.action;jsessionid=6EA1B669869EA6E3315E10441650CC68?username=saburo&password=123 HTTP/1.1" 200 427
+0:0:0:0:0:0:0:1 - - [28/Nov/2017:10:46:43 +0900] "POST /WebProj7/TestAction.action;jsessionid=6EA1B669869EA6E3315E10441650CC68 HTTP/1.1" 200 425
