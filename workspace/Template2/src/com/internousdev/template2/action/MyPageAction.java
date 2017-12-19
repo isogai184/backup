@@ -6,7 +6,6 @@ package com.internousdev.template2.action;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -27,7 +26,6 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 	private int id;
 	private String deleteFlg;
 	private String message;
-	private List idList = new ArrayList();
 
 	public String execute() throws SQLException {
 
@@ -40,17 +38,14 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 			return ERROR;
 		}
 
-		idList = (List<Integer>) session.get("check");
 		if(deleteFlg == null) {
+//			String item_transaction_id = session.get("id").toString();
 			String user_master_id = session.get("login_user_id").toString();
 
-//			for (int i = 0; i < buyItemDTOList.size(); i++) {
-//				int item_transaction_id = buyItemDTOList.get(i).getId();
-
-				//forループでListのidを複数作成→Listに入れる→session.put
+			//ループでListのidを複数作成→Listに入れる→session.put
 				myPageList = myPageDAO.getMyPageUserInfo(user_master_id);
-				session.put("myPageList", myPageList);
-//			}
+//				session.put("myPageList", myPageList);
+
 				Iterator<MyPageDTO> iterator = myPageList.iterator();
 				if (!(iterator.hasNext())) {
 					myPageList = null;
@@ -68,9 +63,6 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 	public void delete() throws SQLException {
 
-//		@SuppressWarnings("unchecked")
-//		List<BuyItemDTO> buyItemDTOList = (List<BuyItemDTO>) session.get("buyItemDTOList");
-//
 //		int item_transaction_id = buyItemDTOList.get(0).getId();
 		String user_master_id = session.get("login_user_id").toString();
 
@@ -84,7 +76,6 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 		}
 	}
 
-//	@SuppressWarnings("unchecked")
 //	public void deleteChoose() throws SQLException {
 //
 //		//checkboxの情報を取得
@@ -95,6 +86,11 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 //		int res = 0;
 //
 //		for (int j = 0; j < idList.size(); j++) {
+//
+//			if (session.getid(j) == checked) {
+//				delete();
+//			}
+//
 //
 //			myPageDAO.buyItemChooseDelete(idList.get(j), user_master_id);
 //			res++;
@@ -129,13 +125,4 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public List getIdList() {
-		return idList;
-	}
-
-	public void setIdList(List idList) {
-		this.idList = idList;
-	}
-
 }
