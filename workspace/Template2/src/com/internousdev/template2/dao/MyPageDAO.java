@@ -37,6 +37,7 @@ public class MyPageDAO {
 
 				while(resultSet.next()) {
 					MyPageDTO dto = new MyPageDTO();
+					dto.setId(resultSet.getInt("id"));
 					dto.setItemName(resultSet.getString("item_name"));
 					dto.setTotalPrice(resultSet.getString("total_price"));
 					dto.setTotalCount(resultSet.getString("total_count"));

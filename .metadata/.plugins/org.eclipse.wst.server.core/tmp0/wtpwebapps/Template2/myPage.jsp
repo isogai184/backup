@@ -41,7 +41,7 @@
 		}
 		#main {
 			width: 100%;
-			height: 500px;
+			min-height: 500px;
 			text-align: center;
 		}
 		#footer {
@@ -66,7 +66,7 @@
 			</s:if>
 			<s:elseif test="message == null">
 				<h3>ご購入情報は以下になります。</h3>
-				<s:form action="MyPageAction">
+				<s:form action="MyPageAction" theme="simple">
 				<table border="1">
 					<tr>
 						<th></th>
@@ -78,7 +78,7 @@
 					</tr>
 					<s:iterator value="myPageList">
 						<tr>
-							<td><s:checkbox name="id" value=""/></td>
+							<td><s:checkbox name="checkList" value="checked" fieldvalue="id" /></td>
 							<td><s:property value="itemName" /></td>
 							<td><s:property value="totalPrice" /><span>円</span></td>
 							<td><s:property value="totalCount" /><span>個</span></td>
@@ -87,9 +87,8 @@
 						</tr>
 					</s:iterator>
 				</table>
-
-					<input type="hidden" name="deleteFlg" value="1">
-					<s:submit value="削除" method="delete" />
+  					<input type="hidden" name="deleteFlg" value="1">
+					<s:submit value="削除" method="deleteChoose" />
 				</s:form>
 			</s:elseif>
 			<s:if test="message != null">
@@ -97,7 +96,7 @@
 			</s:if>
 			<div id="text-right">
 				<p>HOMEへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
-				<p>ログアウトする場合は<a href='<s:url action="LogoutAction" />'>こちら</a>
+				<!--  <p>ログアウトする場合は<a href='<s:url action="LogoutAction" />'>こちら</a> -->
 			</div>
 		</div>
 	</div>

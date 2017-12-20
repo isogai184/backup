@@ -14,7 +14,7 @@ public class MyPageDTO {
 	public String totalCount;
 	public String payment;
 	public String userName;
-	public String id;
+	public int id;
 	public String insert_date;
 
 	public String getItemName() {
@@ -47,10 +47,10 @@ public class MyPageDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getInsert_date() {

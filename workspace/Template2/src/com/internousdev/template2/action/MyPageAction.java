@@ -5,6 +5,7 @@ package com.internousdev.template2.action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -24,8 +25,11 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 	public ArrayList<MyPageDTO> myPageList = new ArrayList<MyPageDTO>();
 
 	private int id;
+	private boolean checked;
+	private Collection<String> checkList;
 	private String deleteFlg;
 	private String message;
+//	private List<Map<String, String>> idList = new ArrayList<Map<String, String>>();
 
 	public String execute() throws SQLException {
 
@@ -44,17 +48,16 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 			//ループでListのidを複数作成→Listに入れる→session.put
 				myPageList = myPageDAO.getMyPageUserInfo(user_master_id);
-//				session.put("myPageList", myPageList);
 
 				Iterator<MyPageDTO> iterator = myPageList.iterator();
 				if (!(iterator.hasNext())) {
 					myPageList = null;
 
 			}
-		} else if (deleteFlg.equals("1")){
-			delete();
-		} else if (deleteFlg.equals("2")) {
-//			deleteChoose();
+//		} else if (deleteFlg.equals("1")){
+//			delete();
+		} else if (deleteFlg.equals("1")) {
+			deleteChoose();
 		}
 
 		String result = SUCCESS;
@@ -76,32 +79,37 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 		}
 	}
 
-//	public void deleteChoose() throws SQLException {
+	public void deleteChoose() throws SQLException {
+
+		//checkboxの情報を取得
+		//checkのついた項目のみListをループで削除する。
+
+		String user_master_id = session.get("login_user_id").toString();
+		int res = 0;
+
+//		for (int j = 0; j < myPageList.size(); j++) {
 //
-//		//checkboxの情報を取得
-//		//checkのついた項目のみListをループで削除する。
+//			myPageList.get(j).getId()
+//			if (myPageList.get(j).getId() == checked) {
+//				int res = myPageDAO.buyItemChooseDelete(myPageList.get(j).getId(), user_master_id);
 //
-//		idList = (List<Integer>) session.get("check");
-//		String user_master_id = session.get("login_user_id").toString();
-//		int res = 0;
-//
-//		for (int j = 0; j < idList.size(); j++) {
-//
-//			if (session.getid(j) == checked) {
-//				delete();
 //			}
-//
-//
-//			myPageDAO.buyItemChooseDelete(idList.get(j), user_master_id);
-//			res++;
-//		}
-//		if (res > 0) {
+		for (String check : checkList) {
+			if(check.equals("true")) {
+				int checkId = this.id;
+
+				myPageDAO.buyItemChooseDelete(checkId, user_master_id);
+				res++;
+			}
+		}
+
+		if (res > 0) {
 //			myPageList = null;
-//			setMessage(res + "件削除しました。");
-//		} else if (res == 0) {
-//			setMessage("商品情報の削除に失敗しました。");
-//		}
-//	}
+			setMessage(res + "件削除しました。");
+		} else if (res == 0) {
+			setMessage("商品情報の削除に失敗しました。");
+		}
+	}
 
 	public String getDeleteFlg() {
 		return deleteFlg;
@@ -125,4 +133,24 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public boolean getChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+	public Collection<String> getCheckList() {
+		return checkList;
+	}
+	public void setCheckList(Collection<String> checkList) {
+		this.checkList = checkList;
+	}
+
+
+//	public List<Map<String,String>> getIdList() {
+//	    return idList;
+//	}
+//	public void setIdList(List<Map<String,String>> idList) {
+//	    this.idList = idList;
+//	}
 }
