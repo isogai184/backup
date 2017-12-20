@@ -49,9 +49,9 @@
 		<action name="LogoutAction" class="com.internousdev.template2.action.LogoutAction" method="execute">
 			<result name="success">home.jsp</result>
 		</action>
-	<!--  <action name="GoMyPageAction" class="com.internousdev.template2.action.GoMyPageAction" method="execute">
+		<action name="GoMyPageAction" class="com.internousdev.template2.action.GoMyPageAction" method="execute">
 			<result name="success">myPage.jsp</result>
-		</action> -->
+		</action>
 
 	</package>
 </struts>

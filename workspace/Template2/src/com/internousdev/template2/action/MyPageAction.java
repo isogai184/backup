@@ -5,8 +5,8 @@ package com.internousdev.template2.action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -26,7 +26,7 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 	private int id;
 	private boolean checked;
-	private Collection<String> checkList;
+	private List<String> checkList = new ArrayList<>();
 	private String deleteFlg;
 	private String message;
 //	private List<Map<String, String>> idList = new ArrayList<Map<String, String>>();
@@ -81,9 +81,12 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 	public void deleteChoose() throws SQLException {
 
+		System.out.println(checkList.get(0));
+		System.out.println(checkList.get(1));
+
 		//checkboxの情報を取得
 		//checkのついた項目のみListをループで削除する。
-
+/*
 		String user_master_id = session.get("login_user_id").toString();
 		int res = 0;
 
@@ -109,6 +112,7 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 		} else if (res == 0) {
 			setMessage("商品情報の削除に失敗しました。");
 		}
+*/
 	}
 
 	public String getDeleteFlg() {
@@ -139,10 +143,10 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 	public void setChecked(boolean checked) {
 		this.checked = checked;
 	}
-	public Collection<String> getCheckList() {
+	public List<String> getCheckList() {
 		return checkList;
 	}
-	public void setCheckList(Collection<String> checkList) {
+	public void setCheckList(List<String> checkList) {
 		this.checkList = checkList;
 	}
 

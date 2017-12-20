@@ -70,6 +70,7 @@
 				<table border="1">
 					<tr>
 						<th></th>
+						<th>ID</th>
 						<th>商品名</th>
 						<th>値段</th>
 						<th>購入個数</th>
@@ -79,6 +80,7 @@
 					<s:iterator value="myPageList">
 						<tr>
 							<td><s:checkbox name="checkList" value="checked" fieldvalue="id" /></td>
+							<td><s:property value="id" /></td>
 							<td><s:property value="itemName" /></td>
 							<td><s:property value="totalPrice" /><span>円</span></td>
 							<td><s:property value="totalCount" /><span>個</span></td>
@@ -96,7 +98,7 @@
 			</s:if>
 			<div id="text-right">
 				<p>HOMEへ戻る場合は<a href='<s:url action="GoHomeAction" />'>こちら</a></p>
-				<!--  <p>ログアウトする場合は<a href='<s:url action="LogoutAction" />'>こちら</a> -->
+				<p>ログアウトする場合は<a href='<s:url action="LogoutAction" />'>こちら</a>
 			</div>
 		</div>
 	</div>
