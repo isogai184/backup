@@ -28,7 +28,6 @@ public class MyPageDAO {
 		String sql = "select ubit.id, iit.item_name, ubit.total_price, ubit.total_count, ubit.pay, ubit.insert_date from user_buy_item_transaction ubit left join item_info_transaction iit on ubit.item_transaction_id = iit.id where ubit.user_master_id = ? order by insert_date desc";
 
 		try {
-//			for (int i = 0; i < buyItemDTOList.size(); i++) {
 				PreparedStatement preparedStatement = connection.prepareStatement(sql);
 //				preparedStatement.setInt(1, item_transaction_id);
 				preparedStatement.setString(1, user_master_id);
@@ -45,7 +44,6 @@ public class MyPageDAO {
 					dto.setInsert_date(resultSet.getString("insert_date"));
 					myPageDTO.add(dto);
 				}
-//			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -75,25 +73,25 @@ public class MyPageDAO {
 		return result;
 	}
 
-	public int buyItemChooseDelete(int id, String user_master_id) throws SQLException {
+	public void buyItemChooseDelete(String id) throws SQLException {
 
-		String sql = "delete from user_buy_item_transaction where id = ? and user_master_id = ?";
+		String sql = "delete from user_buy_item_transaction where id = ?";
 
 		PreparedStatement preparedStatement;
-		int result = 0;
+//		int result = 0;
 
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, id);
-			preparedStatement.setString(2, user_master_id);
+			preparedStatement.setString(1, id);
+//			preparedStatement.setString(2, user_master_id);
 
-			result = preparedStatement.executeUpdate();
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			connection.close();
 		}
-		return result;
+//		return result;
 	}
 
 }

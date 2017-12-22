@@ -16,6 +16,7 @@ public class MyPageDTO {
 	public String userName;
 	public int id;
 	public String insert_date;
+	public boolean checked;
 
 	public String getItemName() {
 		return itemName;
@@ -58,6 +59,13 @@ public class MyPageDTO {
 	}
 	public void setInsert_date(String insert_date) {
 		this.insert_date = insert_date;
+	}
+
+	public boolean getChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 
 }

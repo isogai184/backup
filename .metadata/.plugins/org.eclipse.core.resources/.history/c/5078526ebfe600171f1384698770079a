@@ -1,0 +1,99 @@
+/**
+ *
+ */
+package com.internousdev.template2.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+//import com.internousdev.template2.dto.BuyItemDTO;
+import com.internousdev.template2.dto.MyPageDTO;
+import com.internousdev.template2.util.DBConnector;
+
+/**
+ * @author internousdev
+ *
+ */
+public class MyPageDAO {
+	private DBConnector dbConnector = new DBConnector();
+	private Connection connection = dbConnector.getConnection();
+
+	public ArrayList<MyPageDTO> getMyPageUserInfo(String user_master_id) throws SQLException {
+		ArrayList<MyPageDTO> myPageDTO = new ArrayList<MyPageDTO>();
+//		List<BuyItemDTO> buyItemDTOList = new ArrayList<BuyItemDTO>();
+
+		String sql = "select ubit.id, iit.item_name, ubit.total_price, ubit.total_count, ubit.pay, ubit.insert_date from user_buy_item_transaction ubit left join item_info_transaction iit on ubit.item_transaction_id = iit.id where ubit.user_master_id = ? order by insert_date desc";
+
+		try {
+//			for (int i = 0; i < buyItemDTOList.size(); i++) {
+				PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//				preparedStatement.setInt(1, item_transaction_id);
+				preparedStatement.setString(1, user_master_id);
+
+				ResultSet resultSet = preparedStatement.executeQuery();
+
+				while(resultSet.next()) {
+					MyPageDTO dto = new MyPageDTO();
+					dto.setId(resultSet.getInt("id"));
+					dto.setItemName(resultSet.getString("item_name"));
+					dto.setTotalPrice(resultSet.getString("total_price"));
+					dto.setTotalCount(resultSet.getString("total_count"));
+					dto.setPayment(resultSet.getString("pay"));
+					dto.setInsert_date(resultSet.getString("insert_date"));
+					myPageDTO.add(dto);
+				}
+//			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			connection.close();
+		}
+		return myPageDTO;
+	}
+
+	public int buyItemHistoryDelete(String user_master_id) throws SQLException {
+
+		String sql = "delete from user_buy_item_transaction where user_master_id = ?";
+
+		PreparedStatement preparedStatement;
+		int result = 0;
+
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+//			preparedStatement.setInt(1, item_transaction_id);
+			preparedStatement.setString(1, user_master_id);
+
+			result = preparedStatement.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			connection.close();
+		}
+		return result;
+	}
+
+	public int buyItemChooseDelete(int id, String user_master_id) throws SQLException {
+
+		String sql = "delete from user_buy_item_transaction where id = ? and user_master_id = ?";
+
+		PreparedStatement preparedStatement;
+		int result = 0;
+
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+			preparedStatement.setString(2, user_master_id);
+
+			result = preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			connection.close();
+		}
+		return result;
+	}
+
+}
