@@ -51,6 +51,16 @@
 			clear: both;
 		}
 	</style>
+	<script type="text/javascript">
+
+		function allDelete() {
+
+		}
+		function chooseDelete() {
+
+		}
+
+	</script>
 </head>
 <body>
 	<div id="header">
@@ -79,7 +89,7 @@
 					</tr>
 					<s:iterator value="myPageList">
 						<tr>
-							<td><s:checkbox name="checkList" value="checked" fieldvalue="id" /></td>
+ 							<td><input type="checkbox" name="checkList" value="${id}" ></td>
 							<td><s:property value="id" /><s:hidden name="id" value="%{id}" />
 							<td><s:property value="itemName" /></td>
 							<td><s:property value="totalPrice" /><span>円</span></td>
@@ -89,8 +99,11 @@
 						</tr>
 					</s:iterator>
 				</table>
+				<!-- javascriptで全削除、選択削除の２つのボタンを用意。 -->
+			<!-- <input type="button" value="選択したものを削除" onClick="function()">
+				<input type="button" value="すべて削除" onClick="function()"> -->
   					<input type="hidden" name="deleteFlg" value="1">
-					<s:submit value="削除" method="deleteChoose" />
+					<s:submit value="削除" />
 				</s:form>
 			</s:elseif>
 			<s:if test="message != null">

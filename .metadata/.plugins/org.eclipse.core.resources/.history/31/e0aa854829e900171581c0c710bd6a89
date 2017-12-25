@@ -1,0 +1,166 @@
+/**
+ *
+ */
+package com.internousdev.template2.action;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.internousdev.template2.dao.MyPageDAO;
+import com.internousdev.template2.dto.MyPageDTO;
+import com.opensymphony.xwork2.ActionSupport;
+/**
+ * @author internousdev
+ *
+ */
+public class MyPageAction extends ActionSupport implements SessionAware {
+
+	public Map<String, Object> session;
+	public MyPageDAO myPageDAO = new MyPageDAO();
+	public ArrayList<MyPageDTO> myPageList = new ArrayList<MyPageDTO>();
+
+	private String id;
+	private boolean checked;
+	private List<String> checkList = new ArrayList<>();
+	private String deleteFlg;
+	private String message;
+//	private List<String> idList = new ArrayList<>();
+
+	public String execute() throws SQLException {
+
+		// 元は buyItemDTOのidをLoginAction内のsession.putで追加していた。
+
+		if (!session.containsKey("buyItemDTOList")) {
+			return ERROR;
+		}
+
+		if(deleteFlg == null) {
+//			String item_transaction_id = session.get("id").toString();
+			String user_master_id = session.get("login_user_id").toString();
+
+				myPageList = myPageDAO.getMyPageUserInfo(user_master_id);
+
+				Iterator<MyPageDTO> iterator = myPageList.iterator();
+				if (!(iterator.hasNext())) {
+					myPageList = null;
+
+			}
+//		} else if (deleteFlg.equals("1")){
+//			delete();
+		} else if (deleteFlg.equals("1")) {
+			deleteChoose();
+		}
+
+		String result = SUCCESS;
+		return result;
+	}
+
+	public void delete() throws SQLException {
+
+//		int item_transaction_id = buyItemDTOList.get(0).getId();
+		String user_master_id = session.get("login_user_id").toString();
+
+		int res = myPageDAO.buyItemHistoryDelete(user_master_id);
+
+		if (res > 0) {
+			myPageList = null;
+			setMessage("商品情報を正しく削除しました。");
+		} else if (res == 0) {
+			setMessage("商品情報の削除に失敗しました。");
+		}
+	}
+
+	public void deleteChoose() throws SQLException {
+
+//		String[] idList = (String[]) session.get("id");
+		List<String> idList = Arrays.asList(id.split(", "));
+
+
+		System.out.println(checkList.get(0));
+		System.out.println(checkList.get(1));
+		System.out.println(idList.get(0));
+		System.out.println(idList.get(1));
+
+		//checkboxの情報を取得
+		//check == true の項目のみidを取得してループで削除する。
+
+		String user_master_id = session.get("login_user_id").toString();
+		int res = 0;
+
+//		String user_master_id = session.get("login_user_id").toString();
+
+		myPageList = myPageDAO.getMyPageUserInfo(user_master_id);
+
+
+		for (int i = 0; i < myPageList.size(); i++) {
+			if(myPageList.get(i).getChecked() == true) {
+				String checkId = idList.get(i);
+
+				myPageDAO.buyItemChooseDelete(checkId);
+				res++;
+			}
+		}
+
+		if (res > 0) {
+//			myPageList = null;
+			setMessage(res + "件削除しました。");
+
+			Iterator<MyPageDTO> iterator = myPageList.iterator();
+			if (!(iterator.hasNext())) {
+				myPageList = null;
+			}
+		} else if (res == 0) {
+			setMessage("商品情報の削除に失敗しました。");
+		}
+
+	}
+
+	public String getDeleteFlg() {
+		return deleteFlg;
+	}
+	public void setDeleteFlg(String deleteFlg) {
+		this.deleteFlg = deleteFlg;
+	}
+	public String getmessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public boolean getChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+	public List<String> getCheckList() {
+		return checkList;
+	}
+	public void setCheckList(List<String> checkList) {
+		this.checkList = checkList;
+	}
+
+
+//	public List<Map<String,String>> getIdList() {
+//	    return idList;
+//	}
+//	public void setIdList(List<Map<String,String>> idList) {
+//	    this.idList = idList;
+//	}
+}

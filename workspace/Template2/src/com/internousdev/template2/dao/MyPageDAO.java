@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 //import com.internousdev.template2.dto.BuyItemDTO;
 import com.internousdev.template2.dto.MyPageDTO;
@@ -73,25 +74,35 @@ public class MyPageDAO {
 		return result;
 	}
 
-	public void buyItemChooseDelete(String id) throws SQLException {
+	public int buyItemChooseDelete(List<String> checkList) throws SQLException {
 
 		String sql = "delete from user_buy_item_transaction where id = ?";
 
 		PreparedStatement preparedStatement;
-//		int result = 0;
+		int result = 0;
+//		String checkId = null;
 
 		try {
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, id);
-//			preparedStatement.setString(2, user_master_id);
 
-			preparedStatement.executeUpdate();
+//			preparedStatement.setString(1, checkId);
+//			result = preparedStatement.executeUpdate();
+
+			for (int i = 0; i < checkList.size(); i++) {
+
+				String checkId = checkList.get(i);
+				preparedStatement.setString(1, checkId);
+				preparedStatement.addBatch();
+			}
+				int[] res = preparedStatement.executeBatch();
+				result = res.length;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			connection.close();
 		}
-//		return result;
+		return result;
 	}
 
 }

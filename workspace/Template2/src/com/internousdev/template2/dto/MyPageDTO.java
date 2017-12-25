@@ -65,7 +65,8 @@ public class MyPageDTO {
 		return checked;
 	}
 	public void setChecked(boolean checked) {
-		this.checked = checked;
+		//this.checked = checked;
+		this.checked = false;
 	}
 
 }

@@ -5,7 +5,6 @@ package com.internousdev.template2.action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -26,11 +25,9 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 	public ArrayList<MyPageDTO> myPageList = new ArrayList<MyPageDTO>();
 
 	private String id;
-	private boolean checked;
 	private List<String> checkList = new ArrayList<>();
 	private String deleteFlg;
 	private String message;
-//	private List<String> idList = new ArrayList<>();
 
 	public String execute() throws SQLException {
 
@@ -78,36 +75,20 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 
 	public void deleteChoose() throws SQLException {
 
-//		String[] idList = (String[]) session.get("id");
-		List<String> idList = Arrays.asList(id.split(", "));
-
-
-		System.out.println(checkList.get(0));
-		System.out.println(checkList.get(1));
-		System.out.println(idList.get(0));
-		System.out.println(idList.get(1));
-
-		//checkboxの情報を取得
-		//check == true の項目のみidを取得してループで削除する。
-
-		String user_master_id = session.get("login_user_id").toString();
+//		List<String> idList = Arrays.asList(id.split(", "));
+		MyPageDAO myPageDeleteDAO = new MyPageDAO();
 		int res = 0;
 
-//		String user_master_id = session.get("login_user_id").toString();
+//		for (int i = 0; i < checkList.size(); i++) {
+//			String checkId = checkList.get(0);
 
-		myPageList = myPageDAO.getMyPageUserInfo(user_master_id);
-
-
-		for (int i = 0; i < myPageList.size(); i++) {
-			if(myPageList.get(i).getChecked() == true) {
-				String checkId = idList.get(i);
-
-				myPageDAO.buyItemChooseDelete(checkId);
-				res++;
-			}
-		}
-
+			res = myPageDeleteDAO.buyItemChooseDelete(checkList);
+//		}
 		if (res > 0) {
+			String user_master_id = session.get("login_user_id").toString();
+
+			myPageList = myPageDAO.getMyPageUserInfo(user_master_id);
+
 //			myPageList = null;
 			setMessage(res + "件削除しました。");
 
@@ -143,12 +124,6 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public boolean getChecked() {
-		return checked;
-	}
-	public void setChecked(boolean checked) {
-		this.checked = checked;
-	}
 	public List<String> getCheckList() {
 		return checkList;
 	}
@@ -156,11 +131,4 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 		this.checkList = checkList;
 	}
 
-
-//	public List<Map<String,String>> getIdList() {
-//	    return idList;
-//	}
-//	public void setIdList(List<Map<String,String>> idList) {
-//	    this.idList = idList;
-//	}
 }
