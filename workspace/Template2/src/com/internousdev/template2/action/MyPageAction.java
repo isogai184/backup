@@ -48,9 +48,9 @@ public class MyPageAction extends ActionSupport implements SessionAware {
 					myPageList = null;
 
 			}
-//		} else if (deleteFlg.equals("1")){
-//			delete();
-		} else if (deleteFlg.equals("1")) {
+		} else if (deleteFlg.equals("1")){
+			delete();
+		} else if (deleteFlg.equals("2")) {
 			deleteChoose();
 		}
 

@@ -11,56 +11,28 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <title>MyPage画面</title>
-<style type="text/css">
-		body {
-			margin: 0;
-			padding: 0;
-			line-height: 1.6;
-			letter-spacing: 1px;
-			font-family: verdana, Helvetica, sans-serif;
-			font-size: 12px;
-			color: #333;
-			background: #fff;
-		}
-		table {
-			text-align: center;
-			margin: 0 auto;
-		}
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<script type="text/javascript">
 
-		/* =========TEMPLATE LAYOUT========== */
-		#top {
-			width: 100%;
-			max-width: 780px;
-			margin: 30px auto;
-			border: 1px solid #333;
-		}
-		#header {
-			width: 100%;
-			height: 80px;
-			background-color: black;
-		}
-		#main {
-			width: 100%;
-			min-height: 500px;
-			text-align: center;
-		}
-		#footer {
-			width: 100%;
-			height: 80px;
-			background-color: black;
-			clear: both;
-		}
-	</style>
-	<script type="text/javascript">
+	function allDelete() {
 
-		function allDelete() {
+	}
+	function chooseDelete() {
 
-		}
-		function chooseDelete() {
-
-		}
-
-	</script>
+	}
+	function deleteAll(action) {
+	       document.forms[0].action = action;
+	       document.forms[0].submit();
+	       var deleteFlg = 1;
+	       return false;
+	}
+	function deleteChoose(action) {
+	       document.forms[0].action = action;
+	       document.forms[0].submit();
+	       var deleteFlg = 2;
+	       return false;
+	}
+</script>
 </head>
 <body>
 	<div id="header">
@@ -99,11 +71,18 @@
 						</tr>
 					</s:iterator>
 				</table>
-				<!-- javascriptで全削除、選択削除の２つのボタンを用意。 -->
-			<!-- <input type="button" value="選択したものを削除" onClick="function()">
-				<input type="button" value="すべて削除" onClick="function()"> -->
-  					<input type="hidden" name="deleteFlg" value="1">
-					<s:submit value="削除" />
+				<!-- javascriptで全削除、選択削除の２つのボタンを用意。バリデーションを仕込む -->
+
+				<s:url var="MyPageAction_url" action="MyPageAction">
+				<!-- <input type="button" value="選択したものを削除" onClick="return deleteChoose('${MyPageAction_url}')"> -->
+				<button type="submit" name="deleteFlg" value="2">選択したものを削除</button>
+				</s:url>
+				<s:url var="MyPageAction_url" action="MyPageAction">
+				<!-- <input type="button" value="すべて削除" onClick="return deleteAll('${MyPageAction_url}')"> -->
+				<button type="submit" name="deleteFlg" value="1">すべて削除</button>
+				</s:url>
+  				<!--	<input type="hidden" name="deleteFlg" value="1">
+					<s:submit value="削除" /> -->
 				</s:form>
 			</s:elseif>
 			<s:if test="message != null">

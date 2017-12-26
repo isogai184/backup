@@ -11,50 +11,40 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <title>HOME画面</title>
-<style type="text/css">
-		body {
-			margin: 0;
-			padding: 0;
-			line-height: 1.6;
-			letter-spacing: 1px;
-			font-family: verdana, Helvetica, sans-serif;
-			font-size: 12px;
-			color: #333;
-			background: #fff;
-		}
-		table {
-			text-align: center;
-			margin: 0 auto;
-		}
-
-		/* =========TEMPLATE LAYOUT========== */
-		#top {
-			width: 100%;
-			max-width: 780px;
-			margin: 30px auto;
-			border: 1px solid #333;
-		}
-		#header {
-			width: 100%;
-			height: 80px;
-			background-color: black;
-		}
-		#main {
-			width: 100%;
-			height: 500px;
-			text-align: center;
-		}
-		#footer {
-			width: 100%;
-			height: 80px;
-			background-color: black;
-			clear: both;
-		}
-	</style>
+<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+<script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 </head>
 <body>
 	<div id="header">
-		<div id="pr"></div>
+		<div class="header-logo">
+			<a href='<s:url action="HomeAction" />'><img src="./img/shop-logo.png"></a>
+		</div>
+		<div class="navi navbar navbar-expand-sm">
+			<!-- <div class="navi-list">
+				<div class="navi-menu"><a href='<s:url action="BuyItemAction" />'>商品</a></div>
+				<div class="navi-menu"><a href='<s:url action="LoginAction" />'>ログイン</a></div>
+				<div class="navi-menu"><a href='<s:url action="UserCreateAction" />'>会員登録</a></div>
+				<div class="navi-menu"><a href='<s:url action="MyPageAction" />'>購入履歴</a></div>
+			</div>-->
+			<ul class="navbar-nav navi-list">
+				 <li class="navi-menu nav-item">
+					<a class="nav-link" href='<s:url action="BuyItemAction" />'>商品</a>
+				</li>
+				<li class="navi-menu nav-item">
+					<a class="nav-link" href='<s:url action="LoginAction" />'>ログイン</a>
+				</li>
+				<li class="navi-menu nav-item">
+					<a class="nav-link" href='<s:url action="UserCreateAction" />'>会員登録</a>
+				</li>
+				<li class="navi-menu nav-item">
+					<a class="nav-link" href='<s:url action="MyPageAction" />'>購入履歴</a>
+				</li>
+			</ul>
+
+		</div>
+
 	</div>
 	<div id="main">
 	<div id="top">
